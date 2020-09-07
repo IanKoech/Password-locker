@@ -7,7 +7,7 @@ Ian Koech can be reached at iankoech9@gmail.com
 ### Set-Up and Installation
 `git clone <repo url>` on your terminal
 
-Run `python3.8 <fileName.py> on your terminal`
+Run `python3.8 <fileName.py>` on your terminal
 
 ### Technologies Used
 Python3.8
