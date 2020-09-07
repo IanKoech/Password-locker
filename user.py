@@ -1,3 +1,5 @@
+import pyperclip
+#Imported pyperclip to save user passwords
 class User:
     """
     Class generates user an account instance
@@ -25,7 +27,15 @@ class User:
         for user in cls.Users_list:
             if user.user_name==name:
                 return user
-            
+
+    @classmethod
+    def save_password(cls,name):
+        """
+        Method saves users password depending on the user
+        """
+        person_password=Credentials.find_user(name)
+        pyperclip.copy(person_password.password)
+
     @classmethod
     def user_exists(cls,name):
         """

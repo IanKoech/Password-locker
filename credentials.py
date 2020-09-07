@@ -1,6 +1,7 @@
-from user import User
 import string
 import random
+
+#Imported pyperclip to save entered passwords
 class Credentials:
     """
     Class instantiates user credentials
@@ -23,12 +24,12 @@ class Credentials:
         Credentials.Credentials_list.remove(self)
     
     @classmethod
-    def generate_password(cls,length):
+    def generate_password(cls):
         "Method generates password of a given length depending on user input"
         #Length parameter determines the length of your password
-        letters=string.assii_lowercase
+        letters=string.ascii_lowercase
         #Generating a password of a particular length
-        password="".join(random.choice(letters) for i in range(length))
+        password="".join(random.choice(letters) for i in range(7))
         return password
 
     @classmethod 
@@ -38,6 +39,16 @@ class Credentials:
         has entered their credentials
         """
         for credentials in cls.Credentials_list:
-            if credentials.user_name=name:
+            if credentials.user_name==name:
                 return True
         return False
+    
+    
+    @classmethod
+    def display_credentials(cls):
+        """
+        Method returns the credentials list in the class
+        """
+        return cls.Credentials_list
+if __name__=="__main__":
+    unittest.main()

@@ -45,6 +45,14 @@ class TestUser(unittest.TestCase):
         other_user.delete_user()
         self.assertEqual(len(User.Users_list),1)
 
+    def test_save_password(self):
+        """
+        Method tests whether we can save a users password
+        """
+        self.new_user.save_user()
+        Credentials.save_password("liveoutloud")
+        self.assertEqual(self.new_user.password,pyperclip.paste())
+
     def test_find_user(self):
         """
         Method tests whether a user can be found by
