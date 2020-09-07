@@ -1,4 +1,5 @@
 import pyperclip
+from credentials  import Credentials
 #Imported pyperclip to save user passwords
 class User:
     """
@@ -52,3 +53,12 @@ class User:
         Method displays all the user in the Users list
         """
         return cls.Users_list
+
+    @classmethod
+    def log_in(cls,name,password):
+        """
+        Method checks the name and password and allows users to log in
+        """
+        for user in cls.Users_list:
+            if user.user_name== name and user.password==password:
+                return Credentials.Credentials_list
