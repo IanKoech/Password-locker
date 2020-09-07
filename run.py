@@ -46,9 +46,9 @@ def create_credential(user_password, name, password):
         password : the password for the account
     '''
 
-    new_credentail = Credential(user_password,name,password)
+    new_credentials = Credentials(name,password)
 
-    return new_credentail
+    return new_credentails
 
 
 def save_credentials(credential):
@@ -58,7 +58,7 @@ def save_credentials(credential):
         credential : the credential to be saved
     '''
 
-    credential.save_credential()
+    credential.save_credentials()
 
 def delete_credentials(credential):
     """
@@ -66,7 +66,7 @@ def delete_credentials(credential):
     Args:
         credential : the credential to be deleted
     """
-    credential.delete_credential()
+    credential.delete_credentials()
 
 def check_existing_credentials(name):
     '''
@@ -75,30 +75,30 @@ def check_existing_credentials(name):
         name : the credential name
     '''
 
-    return Credential.credential_exist(name)
+    return Credentials.credentials_exist(name)
 
 def display_users():
     '''
     Function that returns all the saved users 
     '''
 
-    return User.display_user()
+    return User.display_users()
 
 def display_credentials(password):
     '''
     Function that returns all the saved credentials
     '''
 
-    return Credential.display_credential(password)
+    return Credentials.display_credentials(password)
 
 
-def create_generated_password(name):
+def generated_password(name):
     '''
     Function that generates a password for the user 
     Args:
         name : the name of the account
     '''
-    password = Credential.generate_password()
+    password = Credentials.generate_password()
 
     return password
 
@@ -107,9 +107,7 @@ def main():
     Function running the Password Locker app
     '''
 
-    print('''Welcome to ShieldPassword Locker \n
-    Use these short codes to navigate
-    ''')
+    print("Password locker")
 
     while True:
         '''
@@ -138,11 +136,11 @@ def main():
             user_name = input()
 
             print("Password ...")
-            user_password = input()
+            password = input()
 
-            # Create and save new user
-            save_users( create_user( user_name, user_password) )
-
+            # Create and saving new user
+            save_users(create_user(user_name,password))
+            #f string below
             print("\n")
             print(f"{user_name} welcome to Password Locker")
             print("\n")
@@ -175,16 +173,16 @@ def main():
             user_name = input()
 
             print("Enter the password")
-            user_password = input()
+            password = input()
 
-            if user_log_in(user_name,user_password) == None:
+            if user_log_in(user_name,password) == None:
                 print("\n")
                 print("Please try again or create an account")
                 print("\n")
 
             else:
 
-                user_log_in(user_name,user_password)
+                user_log_in(user_name,password)
                 print("\n")
                 print(f'''{user_name} welcome to your Credentials\n
                 Use these short codes to get around''')
@@ -218,7 +216,7 @@ def main():
                         credential_password = input()
 
                         # Create and save new user
-                        save_credentials( create_credential( user_password, credential_name, credential_password) )
+                        save_credentials(create_credential(credential_name, credential_password))
 
                         print("\n")
                         print(f"Credentials for {credential_name} have been created and saved")
@@ -229,12 +227,12 @@ def main():
                         Displaying credential name and password
                         '''
 
-                        if display_credentials(user_password):
+                        if display_credentials(password):
                             print("\n")
                             print(f"{user_name}\'s credentials")
                             print("-"*10)
 
-                            for credential in display_credentials(user_password):
+                            for credential in display_credentials(password):
                                 print(f"Account ..... {credential.credential_name}")
                                 print(f"Password .... {credential.credential_password}")
                                 print("-"*10)
@@ -287,3 +285,6 @@ def main():
             print(f'''Come again, what's {short_code}?
     Please use the short codes''')
             print("\n")
+
+if __name__=="__main__":
+    main()

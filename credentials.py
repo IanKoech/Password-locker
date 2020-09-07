@@ -45,10 +45,14 @@ class Credentials:
     
     
     @classmethod
-    def display_credentials(cls):
+    def display_credentials(cls,password):
         """
         Method returns the credentials list in the class
         """
+        for credentials in Credentials:
+            if credentials.password==password:
+                Credentials.Credentials_list.append(credentials)
+                #Adds the password to the credentials list
         return cls.Credentials_list
 if __name__=="__main__":
     unittest.main()
